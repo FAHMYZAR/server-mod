@@ -31,12 +31,16 @@
   }
 </script>
 
-<div class="row justify-content-center auth-page">
-  <div class="col-lg-4">
-    <div class="card shadow-sm">
-      <div class="card-header h5 p-3">Register</div>
-      <form
-        class="card-body"
+<main class="auth-page">
+  <section class="auth-card" aria-labelledby="register-title">
+    <div class="auth-brand">
+      <div class="brand-mark" aria-hidden="true">FZ</div>
+      <p class="eyebrow">Secure key management</p>
+      <h1 id="register-title">Create account</h1>
+      <p class="auth-subtitle">Register to manage your keys, devices, and account.</p>
+    </div>
+    <form
+        class="auth-form"
         onsubmit={(e) => {
           e.preventDefault();
           submit();
@@ -53,13 +57,12 @@
               placeholder={item[3]}
             /></label
           ><FieldError {errors} name={item[0]} />{/each}
-        <button class="btn btn-outline-secondary" disabled={busy}
-          >→ {busy ? "Registering…" : "Register"}</button
-        >
-      </form>
-    </div>
+      <button class="btn auth-submit" disabled={busy}>
+        {busy ? "Creating account…" : "Create account"}
+      </button>
+    </form>
     <p class="after-card">
-      Already have an account? <a use:link href="/login">Login here</a>
+      Already have an account? <a use:link href="/login">Sign in here</a>
     </p>
-  </div>
-</div>
+  </section>
+</main>
