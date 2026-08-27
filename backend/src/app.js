@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
 import multer from "multer";
@@ -26,6 +27,7 @@ CREATE TABLE IF NOT EXISTS sessions(id TEXT PRIMARY KEY,user_id INTEGER NOT NULL
 try { db.prepare("ALTER TABLE sessions ADD COLUMN login_at INTEGER").run(); } catch {}
 db.prepare("UPDATE sessions SET login_at=COALESCE(login_at, expires_at-1800000) WHERE login_at IS NULL").run();
 const app = express();
+if (process.env.TRUST_PROXY === "true") app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,5 +28,7 @@ server.use((req, res, next) => {
   });
 });
 
-const port = process.env.PORT || 3000;
-server.listen(port, () => console.log(`server listening on ${port}`));
+const host = process.env.HOST || "127.0.0.1";
+const port = Number(process.env.PORT || 3000);
+if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("PORT must be between 1 and 65535");
+server.listen(port, host, () => console.log(`server listening on ${host}:${port}`));

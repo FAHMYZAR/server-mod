@@ -1,4 +1,8 @@
 OLDSOURCE/
+.env
+.env.*
+!.env.example
+!backend/.env.example
 node_modules/
 dist/
 backend/data/
