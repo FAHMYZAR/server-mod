@@ -1,0 +1,23 @@
+{
+  "name": "server-mod-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "allowScripts": {
+    "better-sqlite3": true
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "import": "node migrations/import.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^12.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "multer": "^2.0.0",
+    "uuid": "^11.1.0"
+  }
+}
