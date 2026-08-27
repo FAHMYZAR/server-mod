@@ -3,6 +3,7 @@
   import { route, navigate } from "./lib/router.js";
   import { api } from "./lib/api.js";
   import { session } from "./lib/session.js";
+  import { theme, applyTheme } from "./lib/theme.js";
   import Layout from "./components/Layout.svelte";
   import AlertStack from "./components/AlertStack.svelte";
   import Login from "./pages/Login.svelte";
@@ -28,6 +29,13 @@
   let current = $derived(aliases[$route] || $route.replace(/^\/admin\/user\//, "/admin/users/"));
   const publicRoutes = ["/login", "/register"];
   onMount(async () => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const unsubscribe = theme.subscribe(applyTheme);
+    const syncSystemTheme = () => {
+      if ($theme === "system") applyTheme("system");
+    };
+    media.addEventListener("change", syncSystemTheme);
+
     let user = null;
 
     try {

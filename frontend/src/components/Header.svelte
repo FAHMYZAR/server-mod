@@ -2,8 +2,12 @@
   import { link, navigate } from "../lib/router.js";
   import { api } from "../lib/api.js";
   import { session, notify } from "../lib/session.js";
+  import { theme } from "../lib/theme.js";
   let expanded = $state(false);
   let menu = $state(false);
+  function toggleTheme() {
+    theme.set($theme === "dark" ? "light" : "dark");
+  }
   const admin = $derived(
     Number($session.user?.level) === 1 || $session.user?.role === "admin",
   );
@@ -37,11 +41,15 @@
               >Generate</a
             >
           </div>
-          <div class="dropdown">
-            <button class="nav-user" onclick={() => (menu = !menu)}
-              >◉ {$session.user.fullname || $session.user.username} ▾</button
-            >
-            {#if menu}<div class="dropdown-menu">
+          <div class="nav-actions">
+            <button class="theme-toggle" onclick={toggleTheme} aria-label="Toggle color theme" title="Toggle color theme">
+              {$theme === "dark" ? "☀" : "☾"}
+            </button>
+            <div class="dropdown">
+              <button class="nav-user" onclick={() => (menu = !menu)}
+                >◉ {$session.user.fullname || $session.user.username} ▾</button
+              >
+              {#if menu}<div class="dropdown-menu">
                 <a use:link href="/settings">⚙ Settings</a>
                 {#if admin}<div class="dropdown-divider"></div>
                   <span class="dropdown-label">Admin</span><a
@@ -54,6 +62,7 @@
                 <div class="dropdown-divider"></div>
                 <button class="text-danger" onclick={logout}>← Logout</button>
               </div>{/if}
+            </div>
           </div>
         </div>{/if}
     </div>
