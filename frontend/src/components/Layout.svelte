@@ -5,4 +5,4 @@
 
 <Header />
 <main class="container page">{@render children()}</main>
-<footer><div class="container">FAHMYZZX PRO · License Management</div></footer>
+<footer><div class="container">Z TEAM · License Management</div></footer>

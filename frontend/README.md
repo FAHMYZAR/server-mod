@@ -1,4 +1,4 @@
-# FAHMYZZX PRO frontend
+# Z TEAM frontend
 
 Svelte 5 + Vite single-page migration of the legacy CodeIgniter UI. It is intentionally isolated from `OLDSOURCE/` and uses a cookie-authenticated JSON API configured with `VITE_API_BASE_URL` (default `/api`).
 

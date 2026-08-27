@@ -542,3 +542,33 @@ label {
   .table { min-width: 680px; }
   .table td { overflow-wrap: anywhere; }
 }
+
+/* Legacy Bootstrap navbar behavior: collapsed below md, inline from md upward. */
+.navbar-toggler .navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
+  background: linear-gradient(#fff 0 0) 0 20% / 100% 2px no-repeat,
+    linear-gradient(#fff 0 0) 0 50% / 100% 2px no-repeat,
+    linear-gradient(#fff 0 0) 0 80% / 100% 2px no-repeat;
+  transform: none;
+  opacity: 1;
+}
+@media (min-width: 769px) {
+  .navbar-toggler { display: none; }
+  .navbar-collapse { display: flex !important; }
+  .nav-main { margin-right: auto; }
+  .float-right { margin-left: auto; }
+  .dropdown-menu { top: 100%; }
+}
+@media (max-width: 768px) {
+  .navbar-toggler { display: block; margin-left: auto; }
+  .navbar-collapse { display: none; width: 100%; padding: .5rem 0; }
+  .navbar-collapse.show { display: block; }
+  .navbar-nav { flex-direction: column; gap: 0; }
+  .navbar-nav a, .nav-link { padding: .5rem 0; }
+  .float-right { width: 100%; }
+  .dropdown-menu { position: static; margin-top: 0; }
+  .mobile-only, .mobile-user, .mobile-nav-label { display: none !important; }
+}
